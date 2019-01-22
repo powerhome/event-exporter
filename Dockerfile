@@ -1,6 +1,6 @@
-FROM golang:1.9.2-alpine3.7
-
-ENV PKG=$GOPATH/github.com/bcdonadio/event-exporter
+FROM golang:1.11.4-alpine3.8
+ENV GOPATH=/go \
+    PKG=$GOPATH/src/github.com/bcdonadio/event-exporter
 RUN apk add --no-cache make git
 ADD . $PKG/
 RUN echo $PKG &&\
@@ -8,6 +8,6 @@ RUN echo $PKG &&\
     go get &&\
     make build
 
-FROM alpine:3.7
-COPY --from=0 $GOBIN/event-exporter /
+FROM alpine:3.8
+COPY --from=0 /go/bin/event-exporter /
 CMD ["/event-exporter", "-v", "4"]
