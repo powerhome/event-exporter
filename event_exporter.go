@@ -18,14 +18,16 @@ limitations under the License.
 package main
 
 import (
-	"github.com/golang/glog"
 	"time"
+
+	"github.com/golang/glog"
 
 	"k8s.io/client-go/kubernetes"
 
-	"event-exporter/sinks"
-	"event-exporter/watchers"
 	"sync"
+
+	"github.com/bcdonadio/event-exporter/sinks"
+	"github.com/bcdonadio/event-exporter/watchers"
 )
 
 func (e *eventExporter) Run(stopCh <-chan struct{}) {
