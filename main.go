@@ -46,7 +46,7 @@ var (
 	prometheusEndpoint = flag.String("prometheus-endpoint", ":80", "Endpoint on which to "+
 		"expose Prometheus http handler")
 	sinkName              = flag.String("sink", sinkNameElasticSearch, "Sink type to save the exported events: elasticsearch/kafka/http")
-	elasticsearchEndpoint = flag.String("elasticsearch-server", "http://elasticsearch:9200/", "Elasticsearch endpoint")
+	elasticsearchEndpoint = flag.String("elasticsearch-endpoint", "http://elasticsearch:9200/", "Elasticsearch endpoint")
 
 	// for http sink
 	httpEndpoint = flag.String("http-endpoint", "", "Http endpoint")
