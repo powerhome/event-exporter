@@ -19,6 +19,7 @@ package sinks
 import (
 	"context"
 	"encoding/json"
+	"fmt"
 	"time"
 
 	"github.com/golang/glog"
@@ -152,11 +153,13 @@ func (es *ElasticSearchSink) flushBuffer() {
 func (es *ElasticSearchSink) sendEntries(entries []*api_v1.Event) {
 	glog.V(4).Infof("Sending %d entries to Elasticsearch", len(entries))
 
-	bulkRequest := es.esClient.Bulk().Index(eventsLogName)
+	currentTime := time.Now()
+	currentDate := fmt.Sprintf("%v", currentTime.Format("2006-01-02"))
+	bulkRequest := es.esClient.Bulk().Index(eventsLogName + "-" + currentDate)
 
 	for _, event := range entries {
 		glog.Infof("Orig obj: %v", event.InvolvedObject)
-		newIndex := elastic.NewBulkIndexRequest().Index(eventsLogName).Type(eventsLogName).Id(string(event.ObjectMeta.UID)).Doc(event)
+		newIndex := elastic.NewBulkIndexRequest().Type(eventsLogName).Id(string(event.ObjectMeta.UID)).Doc(event)
 		glog.V(4).Infof("Index request on wire: %v", newIndex.String())
 		bulkRequest = bulkRequest.Add(newIndex)
 	}

@@ -57,7 +57,7 @@ const (
 	defaultMaxBufferSize  = 1000
 	defaultMaxConcurrency = 1
 
-	eventsLogName = "events"
+	eventsLogName = "kube-events"
 )
 
 type Sink interface {
