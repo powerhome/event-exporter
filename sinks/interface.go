@@ -20,7 +20,7 @@ package sinks
 import (
 	"time"
 
-	"github.com/bcdonadio/event-exporter/events"
+	"github.com/powerhome/event-exporter/events"
 	"github.com/prometheus/client_golang/prometheus"
 	api_v1 "k8s.io/api/core/v1"
 )

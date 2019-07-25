@@ -26,8 +26,8 @@ import (
 
 	"sync"
 
-	"github.com/bcdonadio/event-exporter/sinks"
-	"github.com/bcdonadio/event-exporter/watchers"
+	"github.com/powerhome/event-exporter/sinks"
+	"github.com/powerhome/event-exporter/watchers"
 )
 
 func (e *eventExporter) Run(stopCh <-chan struct{}) {

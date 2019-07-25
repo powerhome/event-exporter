@@ -23,7 +23,7 @@ import (
 	"time"
 
 	"github.com/golang/glog"
-	"github.com/olivere/elastic"
+	"gopkg.in/olivere/elastic.v6"
 	api_v1 "k8s.io/api/core/v1"
 )
 
