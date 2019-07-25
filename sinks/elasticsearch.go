@@ -154,7 +154,7 @@ func (es *ElasticSearchSink) sendEntries(entries []*api_v1.Event) {
 	glog.V(4).Infof("Sending %d entries to Elasticsearch", len(entries))
 
 	currentTime := time.Now()
-	currentDate := fmt.Sprintf("%v", currentTime.Format("2006-01-02"))
+	currentDate := fmt.Sprintf("%v", currentTime.Format("2006-01"))
 	bulkRequest := es.esClient.Bulk().Index(eventsLogName + "-" + currentDate)
 
 	for _, event := range entries {
