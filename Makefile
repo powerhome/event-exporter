@@ -1,8 +1,8 @@
 
 GOFILES_NOVENDOR = $(shell find . -type f -name '*.go' -not -path "./vendor/*")
 UNITTEST_PACKAGES = $(shell go list ./... | grep -v /vendor/ | grep -v integration_test)
-IMG_REPO ?= bcdonadio/event-exporter
-IMG_TAG ?= latest
+IMG_REPO ?= quay.io/powerhome/event-exporter
+IMG_TAG ?= v0.2.0
 BIN ?= event-exporter
 
 all: fmt vet build
@@ -14,7 +14,7 @@ vet:
 	go vet ${UNITTEST_PACKAGES}
 
 build:
-	go build -ldflags -s -v -o bin/${BIN} .
+	GO111MODULE=on go build -ldflags -s -v -o bin/${BIN} .
 
 run: build
 	bin/${BIN}
